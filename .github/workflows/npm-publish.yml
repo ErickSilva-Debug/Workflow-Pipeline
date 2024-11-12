@@ -14,6 +14,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for getAllCharacters
         run: npx jest teste/getAllCharacters.spec.js --coverage --passWithNoTests --verbose
 
@@ -28,6 +30,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for getPlanetNotFound
         run: npx jest teste/getPlanetNotFound.spec.js --coverage --passWithNoTests --verbose
 
@@ -42,6 +46,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for planetByName
         run: npx jest teste/planetByName.spec.js --coverage --passWithNoTests --verbose
 
@@ -56,6 +62,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for swapi
         run: npx jest teste/swapi.spec.js --coverage --passWithNoTests --verbose
 
@@ -70,6 +78,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for validateCharacterData
         run: npx jest teste/validateCharacterData.spec.js --coverage --passWithNoTests --verbose
 
@@ -84,6 +94,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for validatePlanetData
         run: npx jest teste/validatePlanetData.spec.js --coverage --passWithNoTests --verbose
 
@@ -98,6 +110,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for getAllPlanets
         run: npx jest teste/getAllPlanets.spec.js --coverage --passWithNoTests --verbose
 
@@ -112,6 +126,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for getAllPlanetsCount
         run: npx jest teste/getAllPlanetsCount.spec.js --coverage --passWithNoTests --verbose
 
@@ -126,6 +142,8 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for getCharacterNotFound
         run: npx jest teste/getCharacterNotFound.spec.js --coverage --passWithNoTests --verbose
 
@@ -140,5 +158,7 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm install
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
       - name: Run tests for planetNotFound
         run: npx jest teste/planetNotFound.spec.js --coverage --passWithNoTests --verbose
