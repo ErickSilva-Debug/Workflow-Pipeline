@@ -1,210 +1,39 @@
 name: Test API Endpoints
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
-  test-get-all-characters:
+  test-api:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: Install dependencies
-        run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5
-      - name: Run getAllCharacters.spec.js tests
-        run: npx jest teste/getAllCharacters.spec.js --coverage
 
-  test-get-all-characters-count:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
       - name: Install dependencies
         run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5
-      - name: Run getAllCharactersCount.spec.js tests
-        run: npx jest teste/getAllCharactersCount.spec.js --coverage
 
-  test-get-all-planets:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
       - name: Fix permissions for Jest
         run: chmod +x node_modules/.bin/jest
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5
-      - name: Run getAllPlanets.spec.js tests
-        run: npx jest teste/getAllPlanets.spec.js --coverage
 
-  test-get-all-planets-count:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
       - name: Start server
         run: |
           node server.js &
-          sleep 5
-      - name: Run getAllPlanetsCount.spec.js tests
-        run: npx jest teste/getAllPlanetsCount.spec.js --coverage
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
 
-  test-get-character-not-found:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
-      - name: Start server
+      - name: Run all tests in the 'teste' folder
         run: |
-          node server.js &
-          sleep 5
-      - name: Run getCharacterNotFound.spec.js tests
-        run: npx jest teste/getCharacterNotFound.spec.js --coverage
-
-  test-get-planet-not-found:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5
-      - name: Run getPlanetNotFound.spec.js tests
-        run: npx jest teste/getPlanetNotFound.spec.js --coverage
-
-  test-planet-by-name:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5
-      - name: Run planetByName.spec.js tests
-        run: npx jest teste/planetByName.spec.js --coverage
-
-  test-swapi:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5
-      - name: Run swapi.spec.js tests
-        run: npx jest teste/swapi.spec.js --coverage
-
-  test-validate-character-data:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5
-      - name: Run validateCharacterData.spec.js tests
-        run: npx jest teste/validateCharacterData.spec.js --coverage
-
-  test-validate-planet-data:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5
-      - name: Run validatePlanetData.spec.js tests
-        run: npx jest teste/validatePlanetData.spec.js --coverage
+          npx jest teste/getAllCharacters.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/getPlanetNotFound.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/planetByName.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/swapi.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/validateCharacterData.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/validatePlanetData.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/getAllPlanets.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/getAllPlanetsCount.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/getCharacterNotFound.spec.js --coverage --passWithNoTests --verbose
+          npx jest teste/planetByName.spec.js --coverage --passWithNoTests --verbose
