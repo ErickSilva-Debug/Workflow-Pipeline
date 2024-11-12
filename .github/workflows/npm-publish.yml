@@ -3,7 +3,7 @@ name: Test API Endpoints
 on: [push, pull_request]
 
 jobs:
-  test-api:
+  test-getAllCharacters:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -25,15 +25,239 @@ jobs:
           node server.js &
           sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
 
-      - name: Run all tests in the 'teste' folder
+      - name: Run getAllCharacters test
+        run: npx jest teste/getAllCharacters.spec.js --coverage --passWithNoTests --verbose
+
+  test-getPlanetNotFound:
+    runs-on: ubuntu-latest
+    needs: test-getAllCharacters
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
         run: |
-          npx jest teste/getAllCharacters.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/getPlanetNotFound.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/planetByName.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/swapi.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/validateCharacterData.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/validatePlanetData.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/getAllPlanets.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/getAllPlanetsCount.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/getCharacterNotFound.spec.js --coverage --passWithNoTests --verbose
-          npx jest teste/planetByName.spec.js --coverage --passWithNoTests --verbose
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run getPlanetNotFound test
+        run: npx jest teste/getPlanetNotFound.spec.js --coverage --passWithNoTests --verbose
+
+  test-planetByName:
+    runs-on: ubuntu-latest
+    needs: test-getPlanetNotFound
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run planetByName test
+        run: npx jest teste/planetByName.spec.js --coverage --passWithNoTests --verbose
+
+  test-swapi:
+    runs-on: ubuntu-latest
+    needs: test-planetByName
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run swapi test
+        run: npx jest teste/swapi.spec.js --coverage --passWithNoTests --verbose
+
+  test-validateCharacterData:
+    runs-on: ubuntu-latest
+    needs: test-swapi
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run validateCharacterData test
+        run: npx jest teste/validateCharacterData.spec.js --coverage --passWithNoTests --verbose
+
+  test-validatePlanetData:
+    runs-on: ubuntu-latest
+    needs: test-validateCharacterData
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run validatePlanetData test
+        run: npx jest teste/validatePlanetData.spec.js --coverage --passWithNoTests --verbose
+
+  test-getAllPlanets:
+    runs-on: ubuntu-latest
+    needs: test-validatePlanetData
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run getAllPlanets test
+        run: npx jest teste/getAllPlanets.spec.js --coverage --passWithNoTests --verbose
+
+  test-getAllPlanetsCount:
+    runs-on: ubuntu-latest
+    needs: test-getAllPlanets
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run getAllPlanetsCount test
+        run: npx jest teste/getAllPlanetsCount.spec.js --coverage --passWithNoTests --verbose
+
+  test-getCharacterNotFound:
+    runs-on: ubuntu-latest
+    needs: test-getAllPlanetsCount
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run getCharacterNotFound test
+        run: npx jest teste/getCharacterNotFound.spec.js --coverage --passWithNoTests --verbose
+
+  test-planetNotFound:
+    runs-on: ubuntu-latest
+    needs: test-getCharacterNotFound
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5  # Aumente o tempo se necessário para garantir que o servidor inicie
+
+      - name: Run planetNotFound test
+        run: npx jest teste/getPlanetNotFound.spec.js --coverage --passWithNoTests --verbose
