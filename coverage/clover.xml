@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1731375492847" clover="3.2.0">
+  <project timestamp="1731375492847" name="All files">
+    <metrics statements="19" coveredstatements="19" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6" elements="29" coveredelements="29" complexity="0" loc="19" ncloc="19" packages="1" files="1" classes="1"/>
+    <file name="App.js" path="C:\Users\Erick Silva\Downloads\Atividade01--WorkFlow-Pipeline-main\Projeto\App.js">
+      <metrics statements="19" coveredstatements="19" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+      <line num="2" count="10" type="stmt"/>
+      <line num="3" count="10" type="stmt"/>
+      <line num="6" count="10" type="stmt"/>
+      <line num="39" count="10" type="stmt"/>
+      <line num="59" count="10" type="stmt"/>
+      <line num="60" count="3" type="stmt"/>
+      <line num="63" count="10" type="stmt"/>
+      <line num="64" count="2" type="stmt"/>
+      <line num="65" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="66" count="1" type="stmt"/>
+      <line num="68" count="1" type="stmt"/>
+      <line num="72" count="10" type="stmt"/>
+      <line num="73" count="3" type="stmt"/>
+      <line num="76" count="10" type="stmt"/>
+      <line num="77" count="4" type="stmt"/>
+      <line num="78" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="79" count="2" type="stmt"/>
+      <line num="81" count="2" type="stmt"/>
+      <line num="85" count="10" type="stmt"/>
+    </file>
+  </project>
+</coverage>
