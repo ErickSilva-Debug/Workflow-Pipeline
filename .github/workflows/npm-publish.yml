@@ -1,7 +1,6 @@
-
 name: Test API Endpoints
 
-on: 
+on:
   push:
     branches:
       - main
@@ -16,7 +15,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -33,15 +32,32 @@ jobs:
           node server.js &
           sleep 5 # Aumente o tempo se necessário
 
-      - name: Run tests
-        run: |
-          npx jest teste/getAllCharacters.spec.js --coverage
-          npx jest teste/getAllCharactersCount.spec.js --coverage
-          npx jest teste/getAllPlanets.spec.js --coverage
-          npx jest teste/getAllPlanetsCount.spec.js --coverage
-          npx jest teste/getCharacterNotFound.spec.js --coverage
-          npx jest teste/getPlanetNotFound.spec.js --coverage
-          npx jest teste/planetByName.spec.js --coverage
-          npx jest teste/swapi.spec.js --coverage
-          npx jest teste/validateCharacterData.spec.js --coverage
-          npx jest teste/validatePlanetData.spec.js --coverage
+      - name: Run tests for getAllCharacters.spec.js
+        run: npx jest teste/getAllCharacters.spec.js --coverage
+
+      - name: Run tests for getAllCharactersCount.spec.js
+        run: npx jest teste/getAllCharactersCount.spec.js --coverage
+
+      - name: Run tests for getAllPlanets.spec.js
+        run: npx jest teste/getAllPlanets.spec.js --coverage
+
+      - name: Run tests for getAllPlanetsCount.spec.js
+        run: npx jest teste/getAllPlanetsCount.spec.js --coverage
+
+      - name: Run tests for getCharacterNotFound.spec.js
+        run: npx jest teste/getCharacterNotFound.spec.js --coverage
+
+      - name: Run tests for getPlanetNotFound.spec.js
+        run: npx jest teste/getPlanetNotFound.spec.js --coverage
+
+      - name: Run tests for planetByName.spec.js
+        run: npx jest teste/planetByName.spec.js --coverage
+
+      - name: Run tests for swapi.spec.js
+        run: npx jest teste/swapi.spec.js --coverage
+
+      - name: Run tests for validateCharacterData.spec.js
+        run: npx jest teste/validateCharacterData.spec.js --coverage
+
+      - name: Run tests for validatePlanetData.spec.js
+        run: npx jest teste/validatePlanetData.spec.js --coverage
