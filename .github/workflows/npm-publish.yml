@@ -3,7 +3,7 @@ name: Test API Endpoints
 on: [push, pull_request]
 
 jobs:
-  test-api:
+  test-planet-by-name:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -25,8 +25,34 @@ jobs:
           node server.js &
           sleep 5 # Aumente o tempo se necessário
 
-      - name: Run tests
-        run: npx jest --coverage teste/
+      - name: Run planetByName test
+        run: npx jest --coverage teste/planetByName.spec.js
+
+  
+  test-character-by-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Start server
+        run: |
+          node server.js &
+          sleep 5 # Aumente o tempo se necessário
+
+      - name: Run characterByName test
+        run: npx jest --coverage teste/characterByName.spec.js
 
 
 
