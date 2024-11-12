@@ -3,47 +3,142 @@ name: Test API Endpoints
 on: [push, pull_request]
 
 jobs:
-  test-api:
+  job-getAllCharacters:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-
-      - name: Cache node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-
       - name: Install dependencies
         run: npm install
+      - name: Run tests for getAllCharacters
+        run: npx jest teste/getAllCharacters.spec.js --coverage --passWithNoTests --verbose
 
-      - name: Fix permissions for Jest
-        run: chmod +x node_modules/.bin/jest
+  job-getPlanetNotFound:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for getPlanetNotFound
+        run: npx jest teste/getPlanetNotFound.spec.js --coverage --passWithNoTests --verbose
 
-      - name: Start server
-        run: |
-          node server.js &
-          sleep 5 # Aumente o tempo se necessário para garantir que o servidor inicie
+  job-planetByName:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for planetByName
+        run: npx jest teste/planetByName.spec.js --coverage --passWithNoTests --verbose
 
-      - name: Run tests in parallel
-        run: |
-          npx jest teste/getAllCharacters.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/getPlanetNotFound.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/planetByName.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/swapi.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/validateCharacterData.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/validatePlanetData.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/getAllPlanets.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/getAllPlanetsCount.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/getCharacterNotFound.spec.js --coverage --passWithNoTests --verbose &
-          npx jest teste/planetNotFound.spec.js --coverage --passWithNoTests --verbose
-        continue-on-error: true # Caso algum dos testes falhe, continua a execução dos outros
+  job-swapi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for swapi
+        run: npx jest teste/swapi.spec.js --coverage --passWithNoTests --verbose
 
+  job-validateCharacterData:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for validateCharacterData
+        run: npx jest teste/validateCharacterData.spec.js --coverage --passWithNoTests --verbose
+
+  job-validatePlanetData:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for validatePlanetData
+        run: npx jest teste/validatePlanetData.spec.js --coverage --passWithNoTests --verbose
+
+  job-getAllPlanets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for getAllPlanets
+        run: npx jest teste/getAllPlanets.spec.js --coverage --passWithNoTests --verbose
+
+  job-getAllPlanetsCount:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for getAllPlanetsCount
+        run: npx jest teste/getAllPlanetsCount.spec.js --coverage --passWithNoTests --verbose
+
+  job-getCharacterNotFound:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for getCharacterNotFound
+        run: npx jest teste/getCharacterNotFound.spec.js --coverage --passWithNoTests --verbose
+
+  job-planetNotFound:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests for planetNotFound
+        run: npx jest teste/planetNotFound.spec.js --coverage --passWithNoTests --verbose
